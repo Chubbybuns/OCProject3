@@ -8,13 +8,21 @@ maze.load_maze_from_file()
 
 maze.save_maze()
 
+class game:
+    __init__(self, width, height):
+    self.width
 
-print(len(maze.array))
-print(maze.array)
-print(maze.array[0][0])
-print(maze.array[0][1])
 
-# Exporter maze en .txt
-# revoir les indentations
-# git, créer repo et faire des push, commits
+
+#créer une classe macgyver avec pas grand chose, lui rajouter une image et un nom
+#déplacer macgyver avec pygame
+
+
+
+
+#commandes
+# python -m pip install abc = installer un pip dans le dossier
+# python -m pip freeze = voir ce qui est installé dans le dossier
+
+
 
