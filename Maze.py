@@ -35,7 +35,9 @@ class Maze:
 
 
     def save_maze(self):
+        # Création d'une variable text pour stocker les caractères
         text = ""
+        # Remplir le texte à partir de l'array
         for line in self.array:
             for cell in line:
                 if isinstance(cell, Finish):
@@ -47,7 +49,7 @@ class Maze:
                 if isinstance(cell, Wall):
                     text += "W"
             text += "\n"
-
+        # Création d'un fichier .txt qui écrase l'ancien .txt s'il existe
         maze_file = open("savedmaze.txt", "w")
         maze_file.write(text)
         maze_file.close()
