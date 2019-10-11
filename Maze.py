@@ -38,4 +38,8 @@ class Maze:
 
             for cell in line:
         # \n pour retour à la ligne
+
+        maze_file = open("savedmaze.txt", "a")
+        maze_file.write("blabla")
+        maze_file.close()
         pass
