@@ -1,15 +1,18 @@
 import pygame
 from Maze import Maze
 
-maze = Maze() #création de l'objet
+# Création de l'instance
+maze = Maze() #création de l'instance
 # Appel des méthodes
 maze.load_maze_from_file()
 
 # jeu
 
 class game:
-    __init__(self, width, height):
-    self.width
+    __init__(self, height, width):
+    self.height = height
+    self.width = width
+
 
 maze.save_maze()
 

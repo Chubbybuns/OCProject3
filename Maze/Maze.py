@@ -53,3 +53,5 @@ class Maze:
         maze_file = open("savedmaze.txt", "w")
         maze_file.write(text)
         maze_file.close()
+
+
