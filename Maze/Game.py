@@ -1,23 +1,74 @@
 import pygame
 from Maze import Maze
+from Start import Start
+from Path import Path
+from Wall import Wall
+from Finish import Finish
+
+
+pygame.init()
 
 # Création de l'instance
-maze = Maze() #création de l'instance
+maze = Maze()
+
 # Appel des méthodes
 maze.load_maze_from_file()
 
-# jeu
+# win = window
+win = pygame.display.set_mode((500, 500))
 
-class game:
-    __init__(self, height, width):
-    self.height = height
-    self.width = width
+# Nommer la fenêtre
+pygame.display.set_caption("Macgyver")
 
+# Coordonnées
+x = 0
+y = 0
+width = 32
+height = 43
+vel = 5
+
+# Boucle principale
+run = True
+while run:
+    pygame.time.delay(50)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_LEFT] and x > 0:
+        x -= vel
+    elif keys[pygame.K_RIGHT] and x < 460:
+        x+= vel
+    elif keys[pygame.K_UP] and y > 0:
+        y -= vel
+    elif keys[pygame.K_DOWN] and y < 440:
+        y += vel
+
+    win.fill((0,0,0))
+
+    # boucles pour maze.array
+    for line_number, line in enumerate(maze.array, start=1):
+
+        for cell_number, cell in enumerate (line, start=1):
+            if isinstance(cell, Start):
+                pass
+
+    # Chargement des images
+    MacGyverImg = pygame.image.load('../Images/ressource/MacGyver.png')
+    win.blit(MacGyverImg, (x, y))
+    pygame.display.update()
+
+# quitter le jeu
+pygame.quit()
 
 maze.save_maze()
 
-#créer une classe macgyver avec pas grand chose, lui rajouter une image et un nom
-#déplacer macgyver avec pygame
+# Afficher les murs du labyrinthe et les sols avec win.blit() avec l'array (1 bloc pour le sol et 1 bloc pour le mur)
+# Changer la taille du window en fonction de la taille des images et du labyrinthe
+# avec len(self.array)
 
 #commandes
 # python -m pip install abc = installer un pip dans le dossier
