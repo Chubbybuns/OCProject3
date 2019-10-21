@@ -1,4 +1,5 @@
 import pygame
+import random
 from Maze import Maze
 from Start import Start
 from Path import Path
@@ -15,7 +16,7 @@ maze = Maze()
 maze.load_maze_from_file()
 
 # win = window
-win = pygame.display.set_mode((500, 500))
+win = pygame.display.set_mode((len(maze.array) * 20, len(maze.array) * 20))
 
 # Nommer la fenêtre
 pygame.display.set_caption("Macgyver")
@@ -25,12 +26,12 @@ x = 0
 y = 0
 width = 32
 height = 43
-vel = 5
+vel = 20
 
 # Boucle principale
 run = True
 while run:
-    pygame.time.delay(50)
+    pygame.time.delay(100)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -40,35 +41,43 @@ while run:
 
     if keys[pygame.K_LEFT] and x > 0:
         x -= vel
-    elif keys[pygame.K_RIGHT] and x < 460:
-        x+= vel
+    elif keys[pygame.K_RIGHT] and x < (len(maze.array) * 20) - 20:
+        x += vel
     elif keys[pygame.K_UP] and y > 0:
         y -= vel
-    elif keys[pygame.K_DOWN] and y < 440:
+    elif keys[pygame.K_DOWN] and y < (len(maze.array) * 20) - 20:
         y += vel
 
+    # Pour qu'il n'y ait qu'une image de MacGyver
     win.fill((0,0,0))
 
     # boucles pour maze.array
-    for line_number, line in enumerate(maze.array, start=1):
+    """for line_number, line in enumerate(maze.array, start=1):
 
-        """for cell_number, cell in enumerate (line, start=1):
+        for cell_number, cell in enumerate(line, start=1):
             if isinstance(cell, Start):
-
+                win.blit(StartImg, (0, 0))
             if isinstance(cell, Path):
+                win.blit(PathImg, (x, y))
             if isinstance(cell, Wall):
+                win.blit(WallImg, (x, y))
             if isinstance(cell, Finish):
+                win.blit(FinishImg, (x, y))"""
 
-                pass"""
 
     # Chargement des images
-    MacGyverImg = pygame.image.load('../Images/MacGyver.png')
+    MacGyverImg = pygame.image.load('../Images/Utiles/MacGyver2.png')
     win.blit(MacGyverImg, (x, y))
-    PathImg = pygame.image.load('../Images/Path.png')
-    WallImg = pygame.image.load('../Images/Wall.png')
-    StartImg = pygame.image.load('../images/Start.png')
-    FinishImg = pygame.image.load('../images/Finish.png')
+    PathImg = pygame.image.load('../Images/Utiles/Path.png')
+    WallImg = pygame.image.load('../Images/Utiles/Wall.png')
+    StartImg = pygame.image.load('../Images/Utiles/Start.png')
+    FinishImg = pygame.image.load('../Images/Utiles/Finish.png')
+    EtherImg = pygame.image.load('../Images/Utiles/Ether.png')
+    NeedleImg = pygame.image.load('../Images/Utiles/Needle.png')
+    SyringeImg = pygame.image.load('../Images/Utiles/Syringe.png')
+    GuardianImg = pygame.image.load('../Images/Utiles/Guardian.png')
 
+    # mise à jour de la fenêtre
     pygame.display.update()
 
 # quitter le jeu
@@ -79,7 +88,8 @@ maze.save_maze()
 # Afficher les murs du labyrinthe et les sols avec win.blit() avec l'array (1 bloc pour le sol et 1 bloc pour le mur)
 # Changer la taille du window en fonction de la taille des images et du labyrinthe
 # avec len(self.array)
+# Changer la taille des images en 20x20
 
-#commandes
+# commandes
 # python -m pip install abc = installer un pip dans le dossier
 # python -m pip freeze = voir ce qui est installé dans le dossier
