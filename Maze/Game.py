@@ -52,13 +52,23 @@ while run:
     # boucles pour maze.array
     for line_number, line in enumerate(maze.array, start=1):
 
-        for cell_number, cell in enumerate (line, start=1):
+        """for cell_number, cell in enumerate (line, start=1):
             if isinstance(cell, Start):
-                pass
+
+            if isinstance(cell, Path):
+            if isinstance(cell, Wall):
+            if isinstance(cell, Finish):
+
+                pass"""
 
     # Chargement des images
-    MacGyverImg = pygame.image.load('../Images/ressource/MacGyver.png')
+    MacGyverImg = pygame.image.load('../Images/MacGyver.png')
     win.blit(MacGyverImg, (x, y))
+    PathImg = pygame.image.load('../Images/Path.png')
+    WallImg = pygame.image.load('../Images/Wall.png')
+    StartImg = pygame.image.load('../images/Start.png')
+    FinishImg = pygame.image.load('../images/Finish.png')
+
     pygame.display.update()
 
 # quitter le jeu
