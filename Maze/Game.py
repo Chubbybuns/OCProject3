@@ -66,16 +66,16 @@ while run:
 
 
     # Chargement des images
-    MacGyverImg = pygame.image.load('../Images/Utiles/MacGyver2.png')
+    MacGyverImg = pygame.image.load('../Images/MacGyver.png')
     win.blit(MacGyverImg, (x, y))
-    PathImg = pygame.image.load('../Images/Utiles/Path.png')
-    WallImg = pygame.image.load('../Images/Utiles/Wall.png')
-    StartImg = pygame.image.load('../Images/Utiles/Start.png')
-    FinishImg = pygame.image.load('../Images/Utiles/Finish.png')
-    EtherImg = pygame.image.load('../Images/Utiles/Ether.png')
-    NeedleImg = pygame.image.load('../Images/Utiles/Needle.png')
-    SyringeImg = pygame.image.load('../Images/Utiles/Syringe.png')
-    GuardianImg = pygame.image.load('../Images/Utiles/Guardian.png')
+    PathImg = pygame.image.load('../Images/Path.png')
+    WallImg = pygame.image.load('../Images/Wall.png')
+    StartImg = pygame.image.load('../Images/Start.png')
+    FinishImg = pygame.image.load('../Images/Finish.png')
+    EtherImg = pygame.image.load('../Images/Ether.png')
+    NeedleImg = pygame.image.load('../Images/Needle.png')
+    SyringeImg = pygame.image.load('../Images/Syringe.png')
+    GuardianImg = pygame.image.load('../Images/Guardian.png')
 
     # mise à jour de la fenêtre
     pygame.display.update()
