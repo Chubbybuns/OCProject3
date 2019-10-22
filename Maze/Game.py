@@ -20,6 +20,7 @@ win = pygame.display.set_mode((len(maze.array) * 20, len(maze.array) * 20))
 
 # Nommer la fenêtre
 pygame.display.set_caption("Macgyver")
+# bg = Surface((15,15))
 
 # Coordonnées
 x = 0
@@ -31,7 +32,7 @@ vel = 20
 # Boucle principale
 run = True
 while run:
-    pygame.time.delay(100)
+    pygame.time.delay(120)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -52,17 +53,17 @@ while run:
     win.fill((0,0,0))
 
     # boucles pour maze.array
-    """for line_number, line in enumerate(maze.array, start=1):
+    for line_number, line in enumerate(maze.array, start=1):
 
         for cell_number, cell in enumerate(line, start=1):
             if isinstance(cell, Start):
-                win.blit(StartImg, (0, 0))
+                win.blit(StartImg, ( Startx, Starty))
             if isinstance(cell, Path):
-                win.blit(PathImg, (x, y))
+                win.blit(PathImg, (Pathx, Pathy))
             if isinstance(cell, Wall):
-                win.blit(WallImg, (x, y))
+                win.blit(WallImg, (Wallx, Wally))
             if isinstance(cell, Finish):
-                win.blit(FinishImg, (x, y))"""
+                win.blit(FinishImg, (Finishx, Finishy))
 
 
     # Chargement des images
