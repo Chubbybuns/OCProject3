@@ -32,7 +32,7 @@ vel = 20
 # Boucle principale
 run = True
 while run:
-    pygame.time.delay(120)
+    pygame.time.delay(50)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -53,9 +53,9 @@ while run:
     win.fill((0,0,0))
 
     # boucles pour maze.array
-    for line_number, line in enumerate(maze.array, start=1):
+    # for line_number, line in enumerate(maze.array, start=1):
 
-        for cell_number, cell in enumerate(line, start=1):
+    """for cell_number, cell in enumerate(line, start=1):
             if isinstance(cell, Start):
                 win.blit(StartImg, ( Startx, Starty))
             if isinstance(cell, Path):
@@ -63,7 +63,7 @@ while run:
             if isinstance(cell, Wall):
                 win.blit(WallImg, (Wallx, Wally))
             if isinstance(cell, Finish):
-                win.blit(FinishImg, (Finishx, Finishy))
+                win.blit(FinishImg, (Finishx, Finishy)"""
 
 
     # Chargement des images
