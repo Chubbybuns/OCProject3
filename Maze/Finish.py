@@ -7,3 +7,9 @@ class Finish(Cell):
 
     def __str__(self):
         return "Finish Cell"
+
+    def load_img(self):
+        return "../Images/Finish.png"
+    def initial(self):
+        return "F"
+

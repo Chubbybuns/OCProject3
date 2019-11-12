@@ -40,14 +40,8 @@ class Maze:
         # Remplir le texte à partir de l'array
         for line in self.array:
             for cell in line:
-                if isinstance(cell, Finish):
-                    text += "F"
-                if isinstance(cell, Path):
-                    text += "P"
-                if isinstance(cell, Start):
-                    text += "S"
-                if isinstance(cell, Wall):
-                    text += "W"
+                initial = cell.initial()
+                text += initial
             text += "\n"
         # Création d'un fichier .txt qui écrase l'ancien .txt s'il existe
         maze_file = open("savedmaze.txt", "w")

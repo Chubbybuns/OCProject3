@@ -7,3 +7,9 @@ class Path(Cell):
 
     def __str__(self):
         return "Path Cell"
+
+    def load_img(self):
+        return "../Images/Path.png"
+
+    def initial(self):
+        return "P"
