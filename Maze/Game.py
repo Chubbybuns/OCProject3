@@ -85,7 +85,9 @@ maze.save_maze()
 # Et un objet characters (macgyver et gardien sont enfants)
 # utilisr l'objet macgyver dans game.py
 # créer une fonction get macgyver_position pour déplacer le gros pâté
+# créer des items (seringue..) et les faire apparaître randomly sur des paths
+# créer une fonction add_item dans cell.py puis créer une fonction qui récupère les items des cases
 
-# commandes
+# commandes pip
 # python -m pip install abc = installer un pip dans le dossier
 # python -m pip freeze = voir ce qui est installé dans le dossier

@@ -6,6 +6,7 @@ from Path import Path
 class Maze:
     def __init__(self):  # constructeur
         self.array = []
+
         self.height = 0
         self.width = 0
 
