@@ -1,5 +1,5 @@
 from Characters import Characters
 
-class MacGyver(Characters):
+class Guard(Characters):
     def __init__(self):
         super().__init__()

@@ -36,7 +36,7 @@ GuardianImg = pygame.image.load('../Images/Guardian.png')
 # Boucle principale
 run = True
 while run:
-    pygame.time.delay(100)
+    pygame.time.delay(60)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
