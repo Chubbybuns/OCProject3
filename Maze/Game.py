@@ -1,6 +1,7 @@
 import pygame
 import random
 from Maze import Maze
+from Consumables.Ether import Ether
 
 
 
@@ -17,7 +18,7 @@ win = pygame.display.set_mode((len(maze.array) * 20, len(maze.array) * 20))
 
 # Nommer la fenêtre
 pygame.display.set_caption("Macgyver")
-# bg = Surface((15,15))
+
 
 # Coordonnées
 pos_macgyver_x = 0
@@ -27,11 +28,12 @@ height = 43
 vel = 20
 
 
-
-EtherImg = pygame.image.load('../Images/Ether.png')
-NeedleImg = pygame.image.load('../Images/Needle.png')
-SyringeImg = pygame.image.load('../Images/Syringe.png')
-GuardianImg = pygame.image.load('../Images/Guardian.png')
+cell_list = maze.array
+print(type(cell_list))
+cell = random.choice(cell_list)
+# Cell1 = maze.array[0][0] #ligne puis colonne
+Ether = Ether()
+cell.add_item(Ether)
 
 # Boucle principale
 run = True
@@ -44,6 +46,9 @@ while run:
 
     keys = pygame.key.get_pressed()
 
+
+    """Cell1.remove_item(MacGyver)
+    Cell2.add_item(MacGyver)"""
     if keys[pygame.K_LEFT] and pos_macgyver_x > 0:
         pos_macgyver_x -= vel
     elif keys[pygame.K_RIGHT] and pos_macgyver_x < (len(maze.array) * 20) - 20:
@@ -66,6 +71,14 @@ while run:
             Img_path = cell.load_img()
             Img = pygame.image.load(Img_path)
             win.blit(Img, (x, y))
+            items = cell.get_items()
+            for item in items:
+                Img_path = item.load_img()
+                Img = pygame.image.load(Img_path)
+                win.blit(Img, (x, y))
+
+
+
 
 
     # Chargement des images
@@ -76,6 +89,8 @@ while run:
     # mise à jour de la fenêtre
     pygame.display.update()
 
+
+
 # quitter le jeu
 pygame.quit()
 
@@ -85,8 +100,11 @@ maze.save_maze()
 # Et un objet characters (macgyver et gardien sont enfants)
 # utilisr l'objet macgyver dans game.py
 # créer une fonction get macgyver_position pour déplacer le gros pâté
-# créer des items (seringue..) et les faire apparaître randomly sur des paths
+# créer des items (seringue..) et les faire apparaître randomly sur des paths avec random.choice(list)
 # créer une fonction add_item dans cell.py puis créer une fonction qui récupère les items des cases
+
+# mettre les objets (gestion) en aléatoire à la l37 (get random cell from array) puis afficher
+# faire la différence entre mur et chemin (récupérer toutes les cases puis retirer les mauvaises)
 
 # commandes pip
 # python -m pip install abc = installer un pip dans le dossier
