@@ -5,10 +5,12 @@ from Consumables.Ether import Ether
 
 
 
+
 pygame.init()
 
 # Création de l'instance
 maze = Maze()
+
 
 # Appel des méthodes
 maze.load_maze_from_file()
@@ -28,17 +30,19 @@ height = 43
 vel = 20
 
 
-cell_list = maze.array
+"""cell_list = maze.array
 print(type(cell_list))
-cell = random.choice(cell_list)
-# Cell1 = maze.array[0][0] #ligne puis colonne
+Cell2 = random.choice(cell_list)
+Cell1 = maze.array[0][0] #ligne puis colonne
 Ether = Ether()
-cell.add_item(Ether)
+Cell2.add_item(Ether)
+"""
+
 
 # Boucle principale
 run = True
 while run:
-    pygame.time.delay(60)
+    pygame.time.delay(30)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -71,6 +75,7 @@ while run:
             Img_path = cell.load_img()
             Img = pygame.image.load(Img_path)
             win.blit(Img, (x, y))
+
             items = cell.get_items()
             for item in items:
                 Img_path = item.load_img()
