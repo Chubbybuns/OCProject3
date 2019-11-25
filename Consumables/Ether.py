@@ -6,4 +6,4 @@ class Ether(Consumables):
         super().__init__()
 
     def load_img(self):
-        return "../Images/Ether.png"
+        return "Images/Ether.png"

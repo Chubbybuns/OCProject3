@@ -1,4 +1,5 @@
-from Consumables import Consumables
+from Consumables.Consumables import Consumables
+# from dossier.ficher import class
 
 
 class Syringe(Consumables):
@@ -6,4 +7,4 @@ class Syringe(Consumables):
         super().__init__()
 
     def load_img(self):
-        return "../Images/Syringe.png"
+        return "Images/Syringe.png"

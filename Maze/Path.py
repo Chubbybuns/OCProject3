@@ -1,4 +1,4 @@
-from Cell import Cell
+from Maze.Cell import Cell
 
 
 class Path(Cell):
@@ -9,7 +9,7 @@ class Path(Cell):
         return "Path Cell"
 
     def load_img(self):
-        return "../Images/Path.png"
+        return "Images/Path.png"
 
     def initial(self):
         return "P"

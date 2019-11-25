@@ -1,7 +1,7 @@
-from Wall import Wall
-from Start import Start
-from Finish import Finish
-from Path import Path
+from Maze.Wall import Wall
+from Maze.Start import Start
+from Maze.Finish import Finish
+from Maze.Path import Path
 
 class Maze:
     def __init__(self):  # constructeur
@@ -11,7 +11,7 @@ class Maze:
 
     def load_maze_from_file(self):
         # lire le fichier .txt
-        maze_file = open("Maze.txt", "r")
+        maze_file = open("Maze/Maze.txt", "r")
 
         # remplir l'array avec le .txt
         for line in maze_file:

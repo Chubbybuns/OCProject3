@@ -5,4 +5,7 @@ class MacGyver(Characters):
         super().__init__()
 
     def load_img(self):
-        return "../Images/MacGyver.png"
+        return "Images/MacGyver.png"
+
+    def move_left(self):
+        pass

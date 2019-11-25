@@ -1,4 +1,4 @@
-from Cell import Cell
+from Maze.Cell import Cell
 
 
 class Finish(Cell):
@@ -9,7 +9,7 @@ class Finish(Cell):
         return "Finish Cell"
 
     def load_img(self):
-        return "../Images/Finish.png"
+        return "Images/Finish.png"
     def initial(self):
         return "F"
 

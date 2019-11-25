@@ -1,4 +1,4 @@
-from Cell import Cell
+from Maze.Cell import Cell
 
 class Start(Cell):
     def __init__(self):
@@ -8,7 +8,7 @@ class Start(Cell):
         return "Start Cell"
 
     def load_img(self):
-        return "../Images/Start.png"
+        return "Images/Start.png"
 
     def initial(self):
         return "S"

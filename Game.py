@@ -1,7 +1,9 @@
 import pygame
 import random
-from Maze import Maze
+from Maze.Maze import Maze
 from Consumables.Ether import Ether
+from Consumables.Syringe import Syringe
+
 
 
 
@@ -29,15 +31,10 @@ width = 32
 height = 43
 vel = 20
 
-
-"""cell_list = maze.array
-print(type(cell_list))
-Cell2 = random.choice(cell_list)
-Cell1 = maze.array[0][0] #ligne puis colonne
+Syringe = Syringe()
 Ether = Ether()
-Cell2.add_item(Ether)
-"""
-
+Ether.place_object_randomly(maze)
+Syringe.place_object_randomly(maze)
 
 # Boucle principale
 run = True
@@ -52,7 +49,9 @@ while run:
 
 
     """Cell1.remove_item(MacGyver)
-    Cell2.add_item(MacGyver)"""
+    Cell2.add_item(MacGyver)
+    if keys[pygame.K_LEFT]:
+        move_left()"""
     if keys[pygame.K_LEFT] and pos_macgyver_x > 0:
         pos_macgyver_x -= vel
     elif keys[pygame.K_RIGHT] and pos_macgyver_x < (len(maze.array) * 20) - 20:
@@ -87,7 +86,7 @@ while run:
 
 
     # Chargement des images
-    MacGyverImg = pygame.image.load('../Images/MacGyver.png')
+    MacGyverImg = pygame.image.load('Images/MacGyver.png')
     win.blit(MacGyverImg, (pos_macgyver_x, pos_macgyver_y))
 
 
@@ -110,7 +109,12 @@ maze.save_maze()
 
 # mettre les objets (gestion) en aléatoire à la l37 (get random cell from array) puis afficher
 # faire la différence entre mur et chemin (récupérer toutes les cases puis retirer les mauvaises)
+# dans game, seulement création d'instance et appel de fonctions
+
+# compléter fonction macgver
 
 # commandes pip
 # python -m pip install abc = installer un pip dans le dossier
 # python -m pip freeze = voir ce qui est installé dans le dossier
+
+# objet + class macgyver + collision
