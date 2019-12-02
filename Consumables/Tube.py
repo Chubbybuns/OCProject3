@@ -6,4 +6,4 @@ class Tube(Consumables):
         super().__init__()
 
     def load_img(self):
-        return "../Images/Tube.png"
+        return "Images/Tube.png"

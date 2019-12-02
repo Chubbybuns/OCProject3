@@ -3,6 +3,9 @@ import random
 from Maze.Maze import Maze
 from Consumables.Ether import Ether
 from Consumables.Syringe import Syringe
+from Consumables.Tube import Tube
+from Consumables.Needle import Needle
+from Characters.MacGyver import MacGyver
 
 
 
@@ -18,23 +21,24 @@ maze = Maze()
 maze.load_maze_from_file()
 
 # win = window
-win = pygame.display.set_mode((len(maze.array) * 20, len(maze.array) * 20))
+win = pygame.display.set_mode((len(maze.array) * 20, len(maze.array) * 20 + 30))
 
 # Nommer la fenêtre
 pygame.display.set_caption("Macgyver")
 
 
 # Coordonnées
-pos_macgyver_x = 0
-pos_macgyver_y = 0
 width = 32
 height = 43
-vel = 20
 
-Syringe = Syringe()
+macgyver = MacGyver(0, 0, maze, 20)
+
+Needle = Needle()
+Tube = Tube()
 Ether = Ether()
 Ether.place_object_randomly(maze)
-Syringe.place_object_randomly(maze)
+Tube.place_object_randomly(maze)
+Needle.place_object_randomly(maze)
 
 # Boucle principale
 run = True
@@ -47,22 +51,19 @@ while run:
 
     keys = pygame.key.get_pressed()
 
-
-    """Cell1.remove_item(MacGyver)
-    Cell2.add_item(MacGyver)
     if keys[pygame.K_LEFT]:
-        move_left()"""
-    if keys[pygame.K_LEFT] and pos_macgyver_x > 0:
-        pos_macgyver_x -= vel
-    elif keys[pygame.K_RIGHT] and pos_macgyver_x < (len(maze.array) * 20) - 20:
-        pos_macgyver_x += vel
-    elif keys[pygame.K_UP] and pos_macgyver_y > 0:
-        pos_macgyver_y -= vel
-    elif keys[pygame.K_DOWN] and pos_macgyver_y < (len(maze.array) * 20) - 20:
-        pos_macgyver_y += vel
+        macgyver.move_left()
+    elif keys[pygame.K_RIGHT]:
+        macgyver.move_right()
+    elif keys[pygame.K_UP]:
+        macgyver.move_up()
+    elif keys[pygame.K_DOWN]:
+        macgyver.move_down()
+
+    # donner l'item à macgyver s'il y en a un
 
     # Pour qu'il n'y ait qu'une image de MacGyver
-    win.fill((0,0,0))
+    # win.fill((0,0,0))
 
     # boucles pour maze.array
 
@@ -81,19 +82,13 @@ while run:
                 Img = pygame.image.load(Img_path)
                 win.blit(Img, (x, y))
 
-
-
-
-
     # Chargement des images
-    MacGyverImg = pygame.image.load('Images/MacGyver.png')
-    win.blit(MacGyverImg, (pos_macgyver_x, pos_macgyver_y))
-
+    Img_path = macgyver.load_img()
+    Img = pygame.image.load(Img_path)
+    win.blit(Img, (macgyver.x, macgyver.y))
 
     # mise à jour de la fenêtre
     pygame.display.update()
-
-
 
 # quitter le jeu
 pygame.quit()
@@ -118,3 +113,4 @@ maze.save_maze()
 # python -m pip freeze = voir ce qui est installé dans le dossier
 
 # objet + class macgyver + collision
+#finir collision + ajouter et enlever les objets quand macgyver passe + afficher les objet récupérés quelque part en agrandissant la fenêtre de jeu

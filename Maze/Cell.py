@@ -1,5 +1,5 @@
 class Cell: #objet parent
-    def __init__(self, ):
+    def __init__(self):
         self.item_list = []
 
     def load_img(self):
