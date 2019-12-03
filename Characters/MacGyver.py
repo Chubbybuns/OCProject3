@@ -27,12 +27,12 @@ class MacGyver(Characters):
             self.x += self.vel
 
     def move_up(self):
-        up_cell = self.maze.array[self.y //20 - 1][self.x // 20]
+        up_cell = self.maze.array[self.y // 20 - 1][self.x // 20]
         if self.y > 0 and not isinstance(up_cell, Wall):
             self.y -= self.vel
 
     def move_down(self):
-        down_cell = self.maze.array[self.y // 20 + 1][self.x //20]
+        down_cell = self.maze.array[self.y // 20 + 1][self.x // 20]
         if self.y < (len(self.maze.array) * 20) - 20 and not isinstance(down_cell, Wall):
             self.y += self.vel
 
