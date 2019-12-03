@@ -1,4 +1,4 @@
-class Cell: #objet parent
+class Cell:  # objet parent
     def __init__(self):
         self.item_list = []
 

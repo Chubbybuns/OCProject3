@@ -97,4 +97,5 @@ maze.save_maze()
 # python -m pip install abc = installer un pip dans le dossier
 # python -m pip freeze = voir ce qui est installé dans le dossier
 
-# finir collision + ajouter et enlever les objets quand macgyver passe + afficher les objet récupérés quelque part en agrandissant la fenêtre de jeu
+# finir collision + ajouter et enlever les objets quand macgyver passe
+# afficher les objet récupérés quelque part en agrandissant la fenêtre de jeu

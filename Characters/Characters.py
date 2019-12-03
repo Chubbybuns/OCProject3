@@ -1,4 +1,4 @@
-class Characters: #objet parent
+class Characters:  # objet parent
     def __init__(self):
         pass
 
