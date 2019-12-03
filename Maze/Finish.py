@@ -10,6 +10,7 @@ class Finish(Cell):
 
     def load_img(self):
         return "Images/Finish.png"
+
     def initial(self):
         return "F"
 

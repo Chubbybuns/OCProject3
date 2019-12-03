@@ -7,6 +7,7 @@ class Wall(Cell):
 
     def __str__(self):
         return "Wall Cell"
+
     def load_img(self):
         return "Images/Wall.png"
 

@@ -15,7 +15,8 @@ class MacGyver(Characters):
         return "Images/MacGyver.png"
 
     def move_left(self):
-        left_cell = self.maze.array[self.y // 20][self.x // 20 - 1] # [ligne][colonne] car maze.Array = tableau de lignes
+        # [ligne][colonne] car maze.Array = tableau de lignes
+        left_cell = self.maze.array[self.y // 20][self.x // 20 - 1]
         if self.x > 0 and not isinstance(left_cell, Wall):
             self.x -= self.vel
 

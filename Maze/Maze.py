@@ -3,11 +3,12 @@ from Maze.Start import Start
 from Maze.Finish import Finish
 from Maze.Path import Path
 
+
 class Maze:
     def __init__(self):  # constructeur
         self.array = []
-        self.height = 0
-        self.width = 0
+        """self.height = 0
+        self.width = 0"""
 
     def load_maze_from_file(self):
         # lire le fichier .txt
@@ -32,8 +33,6 @@ class Maze:
                         maze_line.append(maze_path)
             self.array.append(maze_line)
 
-
-
     def save_maze(self):
         # Création d'une variable text pour stocker les caractères
         text = ""
@@ -47,5 +46,3 @@ class Maze:
         maze_file = open("savedmaze.txt", "w")
         maze_file.write(text)
         maze_file.close()
-
-

@@ -1,21 +1,15 @@
 import pygame
-import random
 from Maze.Maze import Maze
 from Consumables.Ether import Ether
 from Consumables.Syringe import Syringe
 from Consumables.Tube import Tube
 from Consumables.Needle import Needle
 from Characters.MacGyver import MacGyver
-
-
-
-
+from Characters.Guard import Guard
 
 pygame.init()
 
-# Création de l'instance
 maze = Maze()
-
 
 # Appel des méthodes
 maze.load_maze_from_file()
@@ -28,17 +22,21 @@ pygame.display.set_caption("Macgyver")
 
 
 # Coordonnées
-width = 32
-height = 43
+"""width = 32
+height = 43"""
 
 macgyver = MacGyver(0, 0, maze, 20)
 
-Needle = Needle()
-Tube = Tube()
-Ether = Ether()
-Ether.place_object_randomly(maze)
-Tube.place_object_randomly(maze)
-Needle.place_object_randomly(maze)
+needle = Needle()
+tube = Tube()
+ether = Ether()
+guard = Guard()
+ether.place_object_randomly(maze)
+tube.place_object_randomly(maze)
+needle.place_object_randomly(maze)
+
+finish_cell = maze.array[len(maze.array) // 20 * 15][len(maze.array) // 20 * 15]
+print(finish_cell)
 
 # Boucle principale
 run = True
@@ -61,6 +59,7 @@ while run:
         macgyver.move_down()
 
     # donner l'item à macgyver s'il y en a un
+    # macgyver.get_item_from_current_cell()
 
     # Pour qu'il n'y ait qu'une image de MacGyver
     # win.fill((0,0,0))
@@ -95,22 +94,8 @@ pygame.quit()
 
 maze.save_maze()
 
-# Créer objet Macgyver
-# Et un objet characters (macgyver et gardien sont enfants)
-# utilisr l'objet macgyver dans game.py
-# créer une fonction get macgyver_position pour déplacer le gros pâté
-# créer des items (seringue..) et les faire apparaître randomly sur des paths avec random.choice(list)
-# créer une fonction add_item dans cell.py puis créer une fonction qui récupère les items des cases
-
-# mettre les objets (gestion) en aléatoire à la l37 (get random cell from array) puis afficher
-# faire la différence entre mur et chemin (récupérer toutes les cases puis retirer les mauvaises)
-# dans game, seulement création d'instance et appel de fonctions
-
-# compléter fonction macgver
-
 # commandes pip
 # python -m pip install abc = installer un pip dans le dossier
 # python -m pip freeze = voir ce qui est installé dans le dossier
 
-# objet + class macgyver + collision
-#finir collision + ajouter et enlever les objets quand macgyver passe + afficher les objet récupérés quelque part en agrandissant la fenêtre de jeu
+# finir collision + ajouter et enlever les objets quand macgyver passe + afficher les objet récupérés quelque part en agrandissant la fenêtre de jeu
