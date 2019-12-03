@@ -14,6 +14,7 @@ class MacGyver(Characters):
     def load_img(self):
         return "Images/MacGyver.png"
 
+    # MacGyver movements + collisions
     def move_left(self):
         # [ligne][colonne] car maze.Array = tableau de lignes
         left_cell = self.maze.array[self.y // 20][self.x // 20 - 1]

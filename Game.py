@@ -11,7 +11,6 @@ pygame.init()
 
 maze = Maze()
 
-# Appel des méthodes
 maze.load_maze_from_file()
 
 # win = window
@@ -38,7 +37,7 @@ needle.place_object_randomly(maze)
 finish_cell = maze.array[len(maze.array) // 20 * 15][len(maze.array) // 20 * 15]
 print(finish_cell)
 
-# Boucle principale
+# Main loop
 run = True
 while run:
     pygame.time.delay(30)
@@ -64,7 +63,7 @@ while run:
     # Pour qu'il n'y ait qu'une image de MacGyver
     # win.fill((0,0,0))
 
-    # boucles pour maze.array
+    # Maze and consumables display
 
     for line_number, line in enumerate(maze.array, start=0):
         y = line_number * 20
@@ -81,15 +80,15 @@ while run:
                 Img = pygame.image.load(Img_path)
                 win.blit(Img, (x, y))
 
-    # Chargement des images
+    # MacGyver Display
     Img_path = macgyver.load_img()
     Img = pygame.image.load(Img_path)
     win.blit(Img, (macgyver.x, macgyver.y))
 
-    # mise à jour de la fenêtre
+    # Window update
     pygame.display.update()
 
-# quitter le jeu
+# Game exit
 pygame.quit()
 
 maze.save_maze()
