@@ -37,6 +37,11 @@ class MacGyver(Characters):
             self.y += self.vel
 
     def get_item_from_current_cell(self):
-        cell = self.maze.array[self.y // 20][self.x // 20]
-        cell.get_items()
-        cell.remove_items()
+        current_cell = self.maze.array[self.y // 20][self.x // 20]
+        new_items = current_cell.get_items()
+        for item in new_items:
+            current_cell.remove_item(item)
+            self.item_list.append(item)
+
+    def get_items(self):
+        return self.item_list
