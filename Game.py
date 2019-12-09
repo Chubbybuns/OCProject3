@@ -19,11 +19,6 @@ win = pygame.display.set_mode((len(maze.array) * 20, len(maze.array) * 20 + 30))
 # Nommer la fenêtre
 pygame.display.set_caption("Macgyver")
 
-
-# Coordonnées
-"""width = 32
-height = 43"""
-
 macgyver = MacGyver(0, 0, maze, 20)
 
 needle = Needle()
@@ -58,10 +53,10 @@ while run:
         macgyver.move_down()
 
     # donner l'item à macgyver s'il y en a un
-    # macgyver.get_item_from_current_cell()
+    macgyver.get_item_from_current_cell()
 
-    # Pour qu'il n'y ait qu'une image de MacGyver
-    # win.fill((0,0,0))
+    # Pour tout réafficher
+    win.fill((0, 0, 0))
 
     # Maze and consumables display
 
@@ -85,6 +80,12 @@ while run:
     Img = pygame.image.load(Img_path)
     win.blit(Img, (macgyver.x, macgyver.y))
 
+    items_list = macgyver.get_items()
+    for item_number, item in enumerate(items_list, start=0):
+        Img_path = item.load_img()
+        Img = pygame.image.load(Img_path)
+        win.blit(Img, (10 + item_number * (20 + 20), len(maze.array) * 20 + 5))
+
     # Window update
     pygame.display.update()
 
@@ -97,5 +98,6 @@ maze.save_maze()
 # python -m pip install abc = installer un pip dans le dossier
 # python -m pip freeze = voir ce qui est installé dans le dossier
 
-# finir collision + ajouter et enlever les objets quand macgyver passe
-# afficher les objet récupérés quelque part en agrandissant la fenêtre de jeu
+# réparer bug de move_down et move_right
+# afficher le gardien
+# ajouter la seringue dans le [] de macgyver quand il a les 3 objets
