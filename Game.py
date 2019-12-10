@@ -25,6 +25,7 @@ needle = Needle()
 tube = Tube()
 ether = Ether()
 guard = Guard()
+syringe = Syringe()
 ether.place_object_randomly(maze)
 tube.place_object_randomly(maze)
 needle.place_object_randomly(maze)
@@ -54,6 +55,9 @@ while run:
 
     # donner l'item à macgyver s'il y en a un
     macgyver.get_item_from_current_cell()
+    Img_path = syringe.load_img()
+    Img = pygame.image.load(Img_path)
+    win.blit(Img, (10 + len(maze.array) * (20 + 20), len(maze.array) * 20 + 5))
 
     # Pour tout réafficher
     win.fill((0, 0, 0))
@@ -66,8 +70,15 @@ while run:
         for cell_number, cell in enumerate(line, start=0):
             x = cell_number * 20
             Img_path = cell.load_img()
-            Img = pygame.image.load(Img_path)
-            win.blit(Img, (x, y))
+            if Img_path == "Images/Finish.png":
+                Img_path2 = guard.load_img()
+                Img = pygame.image.load(Img_path)
+                Img2 = pygame.image.load(Img_path2)
+                win.blit(Img, (x, y))
+                win.blit(Img2, (x, y))
+            else:
+                Img = pygame.image.load(Img_path)
+                win.blit(Img, (x, y))
 
             items = cell.get_items()
             for item in items:

@@ -1,5 +1,6 @@
 from Characters.Characters import Characters
 from Maze.Wall import Wall
+from Consumables.Syringe import Syringe
 
 
 class MacGyver(Characters):
@@ -22,9 +23,12 @@ class MacGyver(Characters):
             self.x -= self.vel
 
     def move_right(self):
-        right_cell = self.maze.array[self.y // 20][self.x // 20 + 1]
-        if self.x < (len(self.maze.array) * 20) - 20 and not isinstance(right_cell, Wall):
-            self.x += self.vel
+        if self.x < (len(self.maze.array) * 20) - 20:
+            right_cell = self.maze.array[self.y // 20][self.x // 20 + 1]
+            if not isinstance(right_cell, Wall):
+                self.x += self.vel
+        elif self.x == (len(self.maze.array) * 20 - 20):
+            self.x == self.x
 
     def move_up(self):
         up_cell = self.maze.array[self.y // 20 - 1][self.x // 20]
@@ -32,9 +36,12 @@ class MacGyver(Characters):
             self.y -= self.vel
 
     def move_down(self):
-        down_cell = self.maze.array[self.y // 20 + 1][self.x // 20]
-        if self.y < (len(self.maze.array) * 20) - 20 and not isinstance(down_cell, Wall):
-            self.y += self.vel
+        if self.y < (len(self.maze.array) * 20) - 20:
+            down_cell = self.maze.array[self.y // 20 + 1][self.x // 20]
+            if not isinstance(down_cell, Wall):
+                self.y += self.vel
+        elif self.y < (len(self.maze.array) * 20) - 20:
+            self.y == self.y
 
     def get_item_from_current_cell(self):
         current_cell = self.maze.array[self.y // 20][self.x // 20]
@@ -42,6 +49,10 @@ class MacGyver(Characters):
         for item in new_items:
             current_cell.remove_item(item)
             self.item_list.append(item)
+            if len(self.item_list) == 3:
+                syringe = Syringe.show_syringe(syringe)
+                self.item_list == []
+                self.item_list += syringe
 
     def get_items(self):
         return self.item_list

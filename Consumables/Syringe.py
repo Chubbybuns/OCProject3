@@ -8,3 +8,6 @@ class Syringe(Consumables):
 
     def load_img(self):
         return "Images/Syringe.png"
+
+    def show_syringe(self):
+        return "syringe"

@@ -1,4 +1,6 @@
 from Characters.Characters import Characters
+from Maze.Finish import Finish
+from Maze.Maze import Maze
 
 
 class Guard(Characters):
@@ -6,4 +8,4 @@ class Guard(Characters):
         super().__init__()
 
     def load_img(self):
-        return "../Images/Guard.png"
+        return "Images/Guard.png"
