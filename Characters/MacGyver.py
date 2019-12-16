@@ -1,6 +1,9 @@
 from Characters.Characters import Characters
 from Maze.Wall import Wall
 from Consumables.Syringe import Syringe
+from Consumables.Ether import Ether
+from Consumables.Needle import Needle
+from Consumables.Tube import Tube
 
 
 class MacGyver(Characters):
@@ -27,8 +30,6 @@ class MacGyver(Characters):
             right_cell = self.maze.array[self.y // 20][self.x // 20 + 1]
             if not isinstance(right_cell, Wall):
                 self.x += self.vel
-        elif self.x == (len(self.maze.array) * 20 - 20):
-            self.x == self.x
 
     def move_up(self):
         up_cell = self.maze.array[self.y // 20 - 1][self.x // 20]
@@ -40,8 +41,6 @@ class MacGyver(Characters):
             down_cell = self.maze.array[self.y // 20 + 1][self.x // 20]
             if not isinstance(down_cell, Wall):
                 self.y += self.vel
-        elif self.y < (len(self.maze.array) * 20) - 20:
-            self.y == self.y
 
     def get_item_from_current_cell(self):
         current_cell = self.maze.array[self.y // 20][self.x // 20]
@@ -49,10 +48,23 @@ class MacGyver(Characters):
         for item in new_items:
             current_cell.remove_item(item)
             self.item_list.append(item)
-            if len(self.item_list) == 3:
-                syringe = Syringe.show_syringe(syringe)
-                self.item_list == []
-                self.item_list += syringe
+
+    def make_syringe_if_possible(self):
+        one_ether = False
+        one_needle = False
+        one_tube = False
+        for item in self.item_list:
+            if isinstance(item, Ether):
+                one_ether = True
+            if isinstance(item, Tube):
+                one_tube = True
+            if isinstance(item, Needle):
+                one_needle = True
+        if one_ether and one_tube and one_needle:
+            # True or False
+            self.item_list = []
+            syringe = Syringe()
+            self.item_list.append(syringe)
 
     def get_items(self):
         return self.item_list
