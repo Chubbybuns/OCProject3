@@ -21,9 +21,10 @@ class MacGyver(Characters):
     # MacGyver movements + collisions
     def move_left(self):
         # [ligne][colonne] car maze.Array = tableau de lignes
-        left_cell = self.maze.array[self.y // 20][self.x // 20 - 1]
-        if self.x > 0 and not isinstance(left_cell, Wall):
-            self.x -= self.vel
+        if self.x > 0:
+            left_cell = self.maze.array[self.y // 20][self.x // 20 - 1]
+            if not isinstance(left_cell, Wall):
+                self.x -= self.vel
 
     def move_right(self):
         if self.x < (len(self.maze.array) * 20) - 20:
@@ -32,9 +33,10 @@ class MacGyver(Characters):
                 self.x += self.vel
 
     def move_up(self):
-        up_cell = self.maze.array[self.y // 20 - 1][self.x // 20]
-        if self.y > 0 and not isinstance(up_cell, Wall):
-            self.y -= self.vel
+        if self.y > 0:
+            up_cell = self.maze.array[self.y // 20 - 1][self.x // 20]
+            if not isinstance(up_cell, Wall):
+                self.y -= self.vel
 
     def move_down(self):
         if self.y < (len(self.maze.array) * 20) - 20:
