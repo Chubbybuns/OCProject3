@@ -4,6 +4,7 @@ from Maze.Finish import Finish
 from Consumables.Ether import Ether
 from Consumables.Tube import Tube
 from Consumables.Needle import Needle
+from Consumables.Syringe import Syringe
 from Characters.MacGyver import MacGyver
 from Characters.Guard import Guard
 
@@ -40,6 +41,12 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if macgyver.x == (len(macgyver.maze.array) * 20) - 20 and macgyver.y == (len(macgyver.maze.array) * 20) - 20:
+            first_item = macgyver.item_list[0]
+            if isinstance(first_item, Syringe):
+                print("ok")
+            print("not ok")
+
 
     keys = pygame.key.get_pressed()
 
@@ -106,3 +113,5 @@ maze.save_maze()
 # si on arrive sur le garde sans seringue, mort sans faire run = False
 # sinon, win
 # le faire en haut de la boucle principale avec un booléen
+
+# corrigé place_object_randomly() pour que les objets ne puissent pas se mettre sur la case finish
