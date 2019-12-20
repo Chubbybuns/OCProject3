@@ -30,8 +30,8 @@ ether.place_object_randomly(maze)
 tube.place_object_randomly(maze)
 needle.place_object_randomly(maze)
 
-finish_cell = maze.array[len(maze.array) // 20 * 15][len(maze.array) // 20 * 15]
-print(finish_cell)
+"""finish_cell = maze.array[len(maze.array) // 20 * 15][len(maze.array) // 20 * 15]
+print(finish_cell)"""
 
 # Main loop
 gameover = False
@@ -46,6 +46,18 @@ while run:
             first_item = macgyver.item_list[0]
             if isinstance(first_item, Syringe):
                 gameover = True
+            elif not isinstance(first_item, Syringe):
+                gameover = False
+
+    if gameover:
+        print("gameover")
+        win.fill((0, 0, 0))
+        font = pygame.font.Font(None, 36)
+        text = font.render("Game Over", True, (255, 255, 255))
+        text_rect = text.get_rect()
+        text_x = win.get_width() / 2 - text_rect.width / 2
+        text_y = win.get_height() / 2 - text_rect.height / 2
+        win.blit(text, [text_x, text_y])
 
     if not gameover:
         keys = pygame.key.get_pressed()
