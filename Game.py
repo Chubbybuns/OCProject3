@@ -8,6 +8,8 @@ from Consumables.Syringe import Syringe
 from Characters.MacGyver import MacGyver
 from Characters.Guard import Guard
 
+#changement
+
 pygame.init()
 
 maze = Maze()
