@@ -4,6 +4,7 @@ from Consumables.Syringe import Syringe
 from Consumables.Ether import Ether
 from Consumables.Needle import Needle
 from Consumables.Tube import Tube
+from Maze.Finish import Finish
 
 
 class MacGyver(Characters):
@@ -70,3 +71,13 @@ class MacGyver(Characters):
 
     def get_items(self):
         return self.item_list
+
+    def on_finish_cell(self):
+        current_cell = self.maze.array[self.y // 20][self.x // 20]
+        return isinstance(current_cell, Finish)
+
+    def has_syringe(self):
+        for item in self.item_list:
+            if isinstance(item, Syringe):
+                return True
+        return False
