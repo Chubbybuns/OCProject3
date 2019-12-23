@@ -35,6 +35,6 @@ class Maze:
                 initial = cell.initial()
                 text += initial
             text += "\n"
-        maze_file = open("savedmaze.txt", "w")
+        maze_file = open("Maze/savedmaze.txt", "w")
         maze_file.write(text)
         maze_file.close()
