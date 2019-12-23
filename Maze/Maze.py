@@ -7,14 +7,9 @@ from Maze.Path import Path
 class Maze:
     def __init__(self):  # constructeur
         self.array = []
-        """self.height = 0
-        self.width = 0"""
 
     def load_maze_from_file(self):
-        # lire le fichier .txt
         maze_file = open("Maze/Maze.txt", "r")
-
-        # remplir l'array avec le .txt
         for line in maze_file:
             maze_line = []
             for character in line:
@@ -34,15 +29,12 @@ class Maze:
             self.array.append(maze_line)
 
     def save_maze(self):
-        # Création d'une variable text pour stocker les caractères
         text = ""
-        # Remplir le texte à partir de l'array
         for line in self.array:
             for cell in line:
                 initial = cell.initial()
                 text += initial
             text += "\n"
-        # Création d'un fichier .txt qui écrase l'ancien .txt s'il existe
         maze_file = open("savedmaze.txt", "w")
         maze_file.write(text)
         maze_file.close()

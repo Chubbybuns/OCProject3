@@ -1,5 +1,4 @@
 from Consumables.Consumables import Consumables
-# from dossier.ficher import class
 
 
 class Syringe(Consumables):

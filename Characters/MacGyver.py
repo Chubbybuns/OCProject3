@@ -47,8 +47,8 @@ class MacGyver(Characters):
 
     def get_item_from_current_cell(self):
         current_cell = self.maze.array[self.y // 20][self.x // 20]
-        new_items = current_cell.get_items()
-        for item in new_items:
+        cell_item = current_cell.get_items()
+        for item in cell_item:
             current_cell.remove_item(item)
             self.item_list.append(item)
 
@@ -64,7 +64,6 @@ class MacGyver(Characters):
             if isinstance(item, Needle):
                 one_needle = True
         if one_ether and one_tube and one_needle:
-            # True or False
             self.item_list = []
             syringe = Syringe()
             self.item_list.append(syringe)

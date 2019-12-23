@@ -101,30 +101,31 @@ while run:
 
             for cell_number, cell in enumerate(line, start=0):
                 x = cell_number * 20
-                img_path = cell.load_img()
-                img = pygame.image.load(img_path)
-                win.blit(img, (x, y))
+                cell_img_path = cell.load_img()
+                cell_img = pygame.image.load(cell_img_path)
+                win.blit(cell_img, (x, y))
                 if isinstance(cell, Finish):
-                    img_path2 = guard.load_img()
-                    img2 = pygame.image.load(img_path2)
-                    win.blit(img2, (x, y))
+                    guard_img_path = guard.load_img()
+                    guard_img = pygame.image.load(guard_img_path)
+                    win.blit(guard_img, (x, y))
 
                 items = cell.get_items()
                 for item in items:
-                    Img_path = item.load_img()
-                    Img = pygame.image.load(Img_path)
-                    win.blit(Img, (x, y))
+                    item_img_path = item.load_img()
+                    item_img = pygame.image.load(item_img_path)
+                    win.blit(item_img, (x, y))
 
     # MacGyver Display
-        img_path = macgyver.load_img()
-        img = pygame.image.load(img_path)
-        win.blit(img, (macgyver.x, macgyver.y))
+        macgyver_img_path = macgyver.load_img()
+        macgyver_img = pygame.image.load(macgyver_img_path)
+        win.blit(macgyver_img, (macgyver.x, macgyver.y))
 
+        # MacGyver itemlist display
         items_list = macgyver.get_items()
         for item_number, item in enumerate(items_list, start=0):
-            Img_path = item.load_img()
-            Img = pygame.image.load(Img_path)
-            win.blit(Img, (10 + item_number * (20 + 20), len(maze.array) * 20 + 5))
+            item_img_path = item.load_img()
+            item_img = pygame.image.load(item_img_path)
+            win.blit(item_img, (10 + item_number * (20 + 20), len(maze.array) * 20 + 5))
 
     # Window update
     pygame.display.update()
@@ -137,8 +138,8 @@ maze.save_maze()
 # commandes pip
 # python -m pip install abc = installer un pip dans le dossier
 # python -m pip freeze = voir ce qui est installé dans le dossier
-# python -m venv 'nom du venv' pour créer un environnement virtuel
 # python -m pip uninstall abc
+# python -m venv 'nom du venv' pour créer un environnement virtuel
 # "nom du venv" \Scripts\activate.bat pour activer l'environnement virtuel
 
 # WORD : expliquer comment marche le jeu, les 3 états, la boucle principale etc
