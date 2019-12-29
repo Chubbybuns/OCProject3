@@ -26,114 +26,117 @@ def initialization():
     return macgyver, maze, guard, victory, defeat
 
 
-macgyver, maze, guard, victory, defeat = initialization()
-
-pygame.init()
-
-# win = window
-win = pygame.display.set_mode((len(maze.array) * 20, len(maze.array) * 20 + 30))
-
-# Nommer la fenêtre
-pygame.display.set_caption("Macgyver")
-
-
-def show_ending_screen(content, content2=None):  # content2 optionnel
-    win.fill((0, 0, 0))
+def show_ending_screen(window, content, content2=None):  # content2 optionnel
+    window.fill((0, 0, 0))
     font = pygame.font.Font(None, 36)
     text = font.render(content, True, (255, 255, 255))
     text_rect = text.get_rect()
-    text_x = win.get_width() / 2 - text_rect.width / 2
-    text_y = win.get_height() / 2 - text_rect.height / 2
+    text_x = window.get_width() / 2 - text_rect.width / 2
+    text_y = window.get_height() / 2 - text_rect.height / 2
     if content2 is not None:
         font2 = pygame.font.Font(None, 20)
         text2 = font2.render(content2, True, (255, 255, 255))
-        win.blit(text2, [text_x, text_y + 30])
-    win.blit(text, [text_x, text_y])
+        window.blit(text2, [text_x, text_y + 30])
+    window.blit(text, [text_x, text_y])
 
 
 # Main loop
-run = True
-while run:
-    pygame.time.delay(30)
+def main():
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
+    macgyver, maze, guard, victory, defeat = initialization()
+    pygame.init()
 
-    if macgyver.on_finish_cell():
-        if macgyver.has_syringe():
-            victory = True
+    # win = window
+    win = pygame.display.set_mode((len(maze.array) * 20, len(maze.array) * 20 + 30))
+
+    # Nommer la fenêtre
+    pygame.display.set_caption("Macgyver")
+    run = True
+    while run:
+        pygame.time.delay(30)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+        if macgyver.on_finish_cell():
+            if macgyver.has_syringe():
+                victory = True
+            else:
+                defeat = True
+
+        if victory:
+            show_ending_screen(win, "Victory")
+
+        elif defeat:
+            show_ending_screen(win, "Gameover", "Press Enter to restart")
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_RETURN]:
+                macgyver, maze, guard, victory, defeat = initialization()
+
         else:
-            defeat = True
+            keys = pygame.key.get_pressed()
 
-    if victory:
-        show_ending_screen("Victory")
+            if keys[pygame.K_LEFT]:
+                macgyver.move_left()
+            elif keys[pygame.K_RIGHT]:
+                macgyver.move_right()
+            elif keys[pygame.K_UP]:
+                macgyver.move_up()
+            elif keys[pygame.K_DOWN]:
+                macgyver.move_down()
 
-    elif defeat:
-        show_ending_screen("Gameover", "Press Enter to restart")
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_RETURN]:
-            macgyver, maze, guard, victory, defeat = initialization()
+        # donner l'item à macgyver s'il y en a un
+            macgyver.get_item_from_current_cell()
+            macgyver.make_syringe_if_possible()
 
-    else:
-        keys = pygame.key.get_pressed()
+        # Pour tout réafficher
+            win.fill((0, 0, 0))
 
-        if keys[pygame.K_LEFT]:
-            macgyver.move_left()
-        elif keys[pygame.K_RIGHT]:
-            macgyver.move_right()
-        elif keys[pygame.K_UP]:
-            macgyver.move_up()
-        elif keys[pygame.K_DOWN]:
-            macgyver.move_down()
+        # Maze and consumables display
 
-    # donner l'item à macgyver s'il y en a un
-        macgyver.get_item_from_current_cell()
-        macgyver.make_syringe_if_possible()
+            for line_number, line in enumerate(maze.array, start=0):
+                y = line_number * 20
 
-    # Pour tout réafficher
-        win.fill((0, 0, 0))
+                for cell_number, cell in enumerate(line, start=0):
+                    x = cell_number * 20
+                    cell_img_path = cell.load_img()
+                    cell_img = pygame.image.load(cell_img_path)
+                    win.blit(cell_img, (x, y))
+                    if isinstance(cell, Finish):
+                        guard_img_path = guard.load_img()
+                        guard_img = pygame.image.load(guard_img_path)
+                        win.blit(guard_img, (x, y))
 
-    # Maze and consumables display
+                    items = cell.get_items()
+                    for item in items:
+                        item_img_path = item.load_img()
+                        item_img = pygame.image.load(item_img_path)
+                        win.blit(item_img, (x, y))
 
-        for line_number, line in enumerate(maze.array, start=0):
-            y = line_number * 20
+        # MacGyver Display
+            macgyver_img_path = macgyver.load_img()
+            macgyver_img = pygame.image.load(macgyver_img_path)
+            win.blit(macgyver_img, (macgyver.x, macgyver.y))
 
-            for cell_number, cell in enumerate(line, start=0):
-                x = cell_number * 20
-                cell_img_path = cell.load_img()
-                cell_img = pygame.image.load(cell_img_path)
-                win.blit(cell_img, (x, y))
-                if isinstance(cell, Finish):
-                    guard_img_path = guard.load_img()
-                    guard_img = pygame.image.load(guard_img_path)
-                    win.blit(guard_img, (x, y))
+            # MacGyver itemlist display
+            items_list = macgyver.get_items()
+            for item_number, item in enumerate(items_list, start=0):
+                item_img_path = item.load_img()
+                item_img = pygame.image.load(item_img_path)
+                win.blit(item_img, (10 + item_number * (20 + 20), len(maze.array) * 20 + 5))
 
-                items = cell.get_items()
-                for item in items:
-                    item_img_path = item.load_img()
-                    item_img = pygame.image.load(item_img_path)
-                    win.blit(item_img, (x, y))
+        # Window update
+        pygame.display.update()
 
-    # MacGyver Display
-        macgyver_img_path = macgyver.load_img()
-        macgyver_img = pygame.image.load(macgyver_img_path)
-        win.blit(macgyver_img, (macgyver.x, macgyver.y))
+    # Game exit
+    pygame.quit()
 
-        # MacGyver itemlist display
-        items_list = macgyver.get_items()
-        for item_number, item in enumerate(items_list, start=0):
-            item_img_path = item.load_img()
-            item_img = pygame.image.load(item_img_path)
-            win.blit(item_img, (10 + item_number * (20 + 20), len(maze.array) * 20 + 5))
+    maze.save_maze()
 
-    # Window update
-    pygame.display.update()
 
-# Game exit
-pygame.quit()
-
-maze.save_maze()
+if __name__.endswith('__main__'):
+    main()
 
 # commandes pip
 # python -m pip install abc = installer un pip dans le dossier
