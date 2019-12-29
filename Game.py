@@ -138,17 +138,4 @@ def main():
 if __name__.endswith('__main__'):
     main()
 
-# commandes pip
-# python -m pip install abc = installer un pip dans le dossier
-# python -m pip freeze = voir ce qui est installé dans le dossier
-# python -m pip uninstall abc
-# python -m venv 'nom du venv' pour créer un environnement virtuel
-# "nom du venv" \Scripts\activate.bat pour activer l'environnement virtuel
-
-# WORD : expliquer comment marche le jeu, les 3 états, la boucle principale etc
-# https://openclassrooms.com/fr/courses/235344-apprenez-a-programmer-en-python/235020-distribuer-facilement-nos-programmes-python-avec-cx-freeze
-# créer un .exe
-# donner des noms clairs aux variables et fonctions qu'on comprenne en les lisant
-# ajouter une fonction main() (google)
-# mettre pygame dans un fichier requirements.txt (google)
-
+# docstring pour chaque classe et chaque méthode
