@@ -9,7 +9,7 @@ class Consumables:
     def __init__(self):
         pass
 
-    def load_img(self):
+    def get_image_path(self):
         pass
 
     def place_object_randomly(self, maze):

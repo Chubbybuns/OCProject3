@@ -5,7 +5,7 @@ class Cell:
     def __init__(self):
         self.item_list = []
 
-    def load_img(self):
+    def get_image_path(self):
         pass
 
     def initial(self):
@@ -19,7 +19,7 @@ class Cell:
 
     def remove_item(self, item):
         """
-        Remove an item from the cell's itemlist
+        Removes an item from the cell's itemlist
         """
         self.item_list.remove(item)
 

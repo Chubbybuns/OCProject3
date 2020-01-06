@@ -1,4 +1,4 @@
-from Consumables.Consumables import Consumables
+from .Consumables import Consumables
 
 
 class Ether(Consumables):
@@ -8,7 +8,7 @@ class Ether(Consumables):
     def __init__(self):
         super().__init__()
 
-    def load_img(self):
+    def get_image_path(self):
         """
         Returns image path
         """

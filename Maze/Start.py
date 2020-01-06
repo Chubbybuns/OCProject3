@@ -11,7 +11,7 @@ class Start(Cell):
     def __str__(self):
         return "Start Cell"
 
-    def load_img(self):
+    def get_image_path(self):
         """
         Returns image path
         """

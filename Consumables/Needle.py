@@ -8,7 +8,7 @@ class Needle(Consumables):
     def __init__(self):
         super().__init__()
 
-    def load_img(self):
+    def get_image_path(self):
         """
         Returns image path
         """

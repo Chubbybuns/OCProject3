@@ -11,15 +11,21 @@ class MacGyver(Characters):
     """
     Creates class of MacGyver, child class of Characters
     """
-    def __init__(self, x, y, maze, vel):
+    def __init__(self, x, y, maze, velocity):
+        """
+        x : horizontal position of MacGyver
+        y : vertical position of MacGyver
+        maze : maze in which evolves MacGyver
+        velocity : speed of MacGyver
+        """
         super().__init__()
         self.x = x
         self.y = y
         self.maze = maze
-        self.vel = vel
+        self.velocity = velocity
         self.item_list = []
 
-    def load_img(self):
+    def get_image_path(self):
         """
         Returns image path
         """
@@ -32,7 +38,7 @@ class MacGyver(Characters):
         if self.x > 0:
             left_cell = self.maze.array[self.y // 20][self.x // 20 - 1]
             if not isinstance(left_cell, Wall):
-                self.x -= self.vel
+                self.x -= self.velocity
 
     def move_right(self):
         """
@@ -41,7 +47,7 @@ class MacGyver(Characters):
         if self.x < (len(self.maze.array) * 20) - 20:
             right_cell = self.maze.array[self.y // 20][self.x // 20 + 1]
             if not isinstance(right_cell, Wall):
-                self.x += self.vel
+                self.x += self.velocity
 
     def move_up(self):
         """
@@ -50,7 +56,7 @@ class MacGyver(Characters):
         if self.y > 0:
             up_cell = self.maze.array[self.y // 20 - 1][self.x // 20]
             if not isinstance(up_cell, Wall):
-                self.y -= self.vel
+                self.y -= self.velocity
 
     def move_down(self):
         """
@@ -59,7 +65,7 @@ class MacGyver(Characters):
         if self.y < (len(self.maze.array) * 20) - 20:
             down_cell = self.maze.array[self.y // 20 + 1][self.x // 20]
             if not isinstance(down_cell, Wall):
-                self.y += self.vel
+                self.y += self.velocity
 
     def get_item_from_current_cell(self):
         """

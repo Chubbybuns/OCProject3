@@ -11,9 +11,9 @@ class Finish(Cell):
     def __str__(self):
         return "Finish Cell"
 
-    def load_img(self):
+    def get_image_path(self):
         """
-        Returns image path
+        Returns image path of Finish
         """
         return "Images/Finish.png"
 
@@ -22,4 +22,3 @@ class Finish(Cell):
         Returns the initial of Finish
         """
         return "F"
-

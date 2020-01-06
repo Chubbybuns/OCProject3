@@ -5,5 +5,5 @@ class Characters:
     def __init__(self):
         pass
 
-    def load_img(self):
+    def get_image_path(self):
         pass

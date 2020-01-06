@@ -4,8 +4,7 @@ from Maze.Finish import Finish
 from Consumables.Ether import Ether
 from Consumables.Tube import Tube
 from Consumables.Needle import Needle
-from Characters.MacGyver import MacGyver
-from Characters.Guard import Guard
+from Characters import MacGyver, Guard
 
 
 def initialization():
@@ -103,27 +102,27 @@ def main():
 
                 for cell_number, cell in enumerate(line, start=0):
                     x = cell_number * 20
-                    cell_img_path = cell.load_img()
+                    cell_img_path = cell.get_image_path()
                     cell_img = pygame.image.load(cell_img_path)
                     win.blit(cell_img, (x, y))
                     if isinstance(cell, Finish):
-                        guard_img_path = guard.load_img()
+                        guard_img_path = guard.get_image_path()
                         guard_img = pygame.image.load(guard_img_path)
                         win.blit(guard_img, (x, y))
 
                     items = cell.get_items()
                     for item in items:
-                        item_img_path = item.load_img()
+                        item_img_path = item.get_image_path()
                         item_img = pygame.image.load(item_img_path)
                         win.blit(item_img, (x, y))
 
-            macgyver_img_path = macgyver.load_img()
+            macgyver_img_path = macgyver.get_image_path()
             macgyver_img = pygame.image.load(macgyver_img_path)
             win.blit(macgyver_img, (macgyver.x, macgyver.y))
 
             items_list = macgyver.get_items()
             for item_number, item in enumerate(items_list, start=0):
-                item_img_path = item.load_img()
+                item_img_path = item.get_image_path()
                 item_img = pygame.image.load(item_img_path)
                 win.blit(item_img, (10 + item_number * (20 + 20), len(maze.array) * 20 + 5))
 
@@ -136,3 +135,7 @@ def main():
 
 if __name__.endswith('__main__'):
     main()
+
+# réduire mainloop + python -m flake8
+# faire module pour consumables et Maze avec __init__
+# revoir tous les imports
