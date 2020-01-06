@@ -3,6 +3,9 @@ from Maze.Path import Path
 
 
 class Consumables:
+    """
+    Creates class of Consumables, parent class of Ether, Needle, Tube and Syringe
+    """
     def __init__(self):
         pass
 
@@ -10,6 +13,9 @@ class Consumables:
         pass
 
     def place_object_randomly(self, maze):
+        """
+        Places item randomly in the maze, on a cell which has to be a Path Cell
+        """
         final_non_wall_list = []
         for maze_line in maze.array:
             path_list = [cell for cell in maze_line if isinstance(cell, Path)]

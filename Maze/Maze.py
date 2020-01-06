@@ -5,10 +5,16 @@ from Maze.Path import Path
 
 
 class Maze:
-    def __init__(self):  # constructeur
+    """
+    Creates class of Maze
+    """
+    def __init__(self):
         self.array = []
 
     def load_maze_from_file(self):
+        """
+        Fills maze's array with instances of Start, Path, Wall and Finish from a text file
+        """
         maze_file = open("Maze/Maze.txt", "r")
         for line in maze_file:
             maze_line = []
@@ -29,6 +35,9 @@ class Maze:
             self.array.append(maze_line)
 
     def save_maze(self):
+        """
+        Converts instances in the maze array into a text file
+        """
         text = ""
         for line in self.array:
             for cell in line:

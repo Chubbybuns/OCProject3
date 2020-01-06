@@ -1,4 +1,7 @@
-class Characters:  # objet parent
+class Characters:
+    """
+    Creates class of Characters, parent class of MacGyver and Guard
+    """
     def __init__(self):
         pass
 

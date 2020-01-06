@@ -9,6 +9,10 @@ from Characters.Guard import Guard
 
 
 def initialization():
+    """
+    Creates and returns instances of Macgyver, guard, needle, tube and ether
+    Places the objects randomly in the maze
+    """
     maze = Maze()
 
     maze.load_maze_from_file()
@@ -26,7 +30,10 @@ def initialization():
     return macgyver, maze, guard, victory, defeat
 
 
-def show_ending_screen(window, content, content2=None):  # content2 optionnel
+def show_ending_screen(window, content, content2=None):
+    """
+    Ending screen display depending on victory or defeat
+    """
     window.fill((0, 0, 0))
     font = pygame.font.Font(None, 36)
     text = font.render(content, True, (255, 255, 255))
@@ -40,16 +47,16 @@ def show_ending_screen(window, content, content2=None):  # content2 optionnel
     window.blit(text, [text_x, text_y])
 
 
-# Main loop
 def main():
+    """
+    Main loop
+    """
 
     macgyver, maze, guard, victory, defeat = initialization()
     pygame.init()
 
-    # win = window
     win = pygame.display.set_mode((len(maze.array) * 20, len(maze.array) * 20 + 30))
 
-    # Nommer la fenêtre
     pygame.display.set_caption("Macgyver")
     run = True
     while run:
@@ -86,14 +93,10 @@ def main():
             elif keys[pygame.K_DOWN]:
                 macgyver.move_down()
 
-        # donner l'item à macgyver s'il y en a un
             macgyver.get_item_from_current_cell()
             macgyver.make_syringe_if_possible()
 
-        # Pour tout réafficher
             win.fill((0, 0, 0))
-
-        # Maze and consumables display
 
             for line_number, line in enumerate(maze.array, start=0):
                 y = line_number * 20
@@ -114,22 +117,18 @@ def main():
                         item_img = pygame.image.load(item_img_path)
                         win.blit(item_img, (x, y))
 
-        # MacGyver Display
             macgyver_img_path = macgyver.load_img()
             macgyver_img = pygame.image.load(macgyver_img_path)
             win.blit(macgyver_img, (macgyver.x, macgyver.y))
 
-            # MacGyver itemlist display
             items_list = macgyver.get_items()
             for item_number, item in enumerate(items_list, start=0):
                 item_img_path = item.load_img()
                 item_img = pygame.image.load(item_img_path)
                 win.blit(item_img, (10 + item_number * (20 + 20), len(maze.array) * 20 + 5))
 
-        # Window update
         pygame.display.update()
 
-    # Game exit
     pygame.quit()
 
     maze.save_maze()
@@ -137,5 +136,3 @@ def main():
 
 if __name__.endswith('__main__'):
     main()
-
-# docstring pour chaque classe et chaque méthode
