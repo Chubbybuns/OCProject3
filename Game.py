@@ -1,9 +1,6 @@
 import pygame
-from Maze.Maze import Maze
-from Maze.Finish import Finish
-from Consumables.Ether import Ether
-from Consumables.Tube import Tube
-from Consumables.Needle import Needle
+from Maze import Maze, Finish
+from Consumables import Ether, Needle, Tube
 from Characters import MacGyver, Guard
 
 
@@ -27,6 +24,41 @@ def initialization():
     defeat = False
 
     return macgyver, maze, guard, victory, defeat
+
+
+def display_maze_and_items(maze, win, guard):
+    for line_number, line in enumerate(maze.array, start=0):
+        y = line_number * 20
+
+        for cell_number, cell in enumerate(line, start=0):
+            x = cell_number * 20
+            cell_img_path = cell.get_image_path()
+            cell_img = pygame.image.load(cell_img_path)
+            win.blit(cell_img, (x, y))
+            if isinstance(cell, Finish):
+                guard_img_path = guard.get_image_path()
+                guard_img = pygame.image.load(guard_img_path)
+                win.blit(guard_img, (x, y))
+
+            items = cell.get_items()
+            for item in items:
+                item_img_path = item.get_image_path()
+                item_img = pygame.image.load(item_img_path)
+                win.blit(item_img, (x, y))
+
+
+def display_macgyver(macgyver, win):
+    macgyver_img_path = macgyver.get_image_path()
+    macgyver_img = pygame.image.load(macgyver_img_path)
+    win.blit(macgyver_img, (macgyver.x, macgyver.y))
+
+
+def display_itemlist(macgyver, win, maze):
+    items_list = macgyver.get_items()
+    for item_number, item in enumerate(items_list, start=0):
+        item_img_path = item.get_image_path()
+        item_img = pygame.image.load(item_img_path)
+        win.blit(item_img, (10 + item_number * (20 + 20), len(maze.array) * 20 + 5))
 
 
 def show_ending_screen(window, content, content2=None):
@@ -97,34 +129,11 @@ def main():
 
             win.fill((0, 0, 0))
 
-            for line_number, line in enumerate(maze.array, start=0):
-                y = line_number * 20
+            display_maze_and_items(maze, win, guard)
 
-                for cell_number, cell in enumerate(line, start=0):
-                    x = cell_number * 20
-                    cell_img_path = cell.get_image_path()
-                    cell_img = pygame.image.load(cell_img_path)
-                    win.blit(cell_img, (x, y))
-                    if isinstance(cell, Finish):
-                        guard_img_path = guard.get_image_path()
-                        guard_img = pygame.image.load(guard_img_path)
-                        win.blit(guard_img, (x, y))
+            display_macgyver(macgyver, win)
 
-                    items = cell.get_items()
-                    for item in items:
-                        item_img_path = item.get_image_path()
-                        item_img = pygame.image.load(item_img_path)
-                        win.blit(item_img, (x, y))
-
-            macgyver_img_path = macgyver.get_image_path()
-            macgyver_img = pygame.image.load(macgyver_img_path)
-            win.blit(macgyver_img, (macgyver.x, macgyver.y))
-
-            items_list = macgyver.get_items()
-            for item_number, item in enumerate(items_list, start=0):
-                item_img_path = item.get_image_path()
-                item_img = pygame.image.load(item_img_path)
-                win.blit(item_img, (10 + item_number * (20 + 20), len(maze.array) * 20 + 5))
+            display_itemlist(macgyver, win, maze)
 
         pygame.display.update()
 
@@ -137,5 +146,4 @@ if __name__.endswith('__main__'):
     main()
 
 # réduire mainloop + python -m flake8
-# faire module pour consumables et Maze avec __init__
 # revoir tous les imports

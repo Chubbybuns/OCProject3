@@ -1,5 +1,5 @@
 """
 Characters' module
 """
-from .Guard import Guard
-from .MacGyver import MacGyver
+from .Guard import Guard  # noqa
+from .MacGyver import MacGyver  # noqa

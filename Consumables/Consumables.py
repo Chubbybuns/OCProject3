@@ -1,5 +1,5 @@
 import random
-from Maze.Path import Path
+from Maze import Path
 
 
 class Consumables:

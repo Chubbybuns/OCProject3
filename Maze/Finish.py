@@ -1,4 +1,4 @@
-from Maze.Cell import Cell
+from .Cell import Cell
 
 
 class Finish(Cell):

@@ -1,4 +1,4 @@
-from Characters.Characters import Characters
+from .Characters import Characters
 
 
 class Guard(Characters):

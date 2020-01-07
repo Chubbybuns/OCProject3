@@ -1,7 +1,4 @@
-from Maze.Wall import Wall
-from Maze.Start import Start
-from Maze.Finish import Finish
-from Maze.Path import Path
+from Maze import Start, Path, Wall, Finish
 
 
 class Maze:

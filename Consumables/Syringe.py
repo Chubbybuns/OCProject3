@@ -1,4 +1,4 @@
-from Consumables.Consumables import Consumables
+from .Consumables import Consumables
 
 
 class Syringe(Consumables):
