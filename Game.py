@@ -27,6 +27,9 @@ def initialization():
 
 
 def display_maze_and_items(maze, win, guard):
+    """
+    Displays maze and items
+    """
     for line_number, line in enumerate(maze.array, start=0):
         y = line_number * 20
 
@@ -48,12 +51,18 @@ def display_maze_and_items(maze, win, guard):
 
 
 def display_macgyver(macgyver, win):
+    """
+    Displays MacGyver
+    """
     macgyver_img_path = macgyver.get_image_path()
     macgyver_img = pygame.image.load(macgyver_img_path)
     win.blit(macgyver_img, (macgyver.x, macgyver.y))
 
 
 def display_itemlist(macgyver, win, maze):
+    """
+    Displays MacGyver's itemlist
+    """
     items_list = macgyver.get_items()
     for item_number, item in enumerate(items_list, start=0):
         item_img_path = item.get_image_path()
@@ -144,6 +153,3 @@ def main():
 
 if __name__.endswith('__main__'):
     main()
-
-# réduire mainloop + python -m flake8
-# revoir tous les imports
