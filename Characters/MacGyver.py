@@ -1,6 +1,6 @@
 from .Characters import Characters
+from Consumables import Ether, Needle, Tube, Syringe
 from Maze import Wall, Finish
-from Consumables import Tube, Ether, Syringe, Needle
 
 
 class MacGyver(Characters):
